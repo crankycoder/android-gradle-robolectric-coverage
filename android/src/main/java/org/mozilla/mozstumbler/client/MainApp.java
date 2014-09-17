@@ -83,17 +83,17 @@ public class MainApp extends Application {
         LogActivity.LogMessageReceiver.createGlobalInstance(this);
         CellScanner.setCellScannerImpl(new DefaultCellScanner(this));
 
-        if (AppGlobals.isDebug) {
-            enableStrictMode();
-        }
+        enableStrictMode();
 
         mReceiver = new ServiceBroadcastReceiver();
         mReceiver.register();
 
         mConnection = new ServiceConnection() {
             public void onServiceConnected(ComponentName className, IBinder binder) {
-                // TODO: binder may be null
-
+                // TODO: vng binder may be null and will cause
+                // robolectric to die horribly.
+                // I'm not sure what behavior we really want to have
+                // if binder is null.  Need to read more. 
                 if (binder == null) {
                     return;
                 }
@@ -176,11 +176,14 @@ public class MainApp extends Application {
 
     @TargetApi(9)
     private void enableStrictMode() {
+        // Enable strictmode for debugging
+        if (!AppGlobals.isDebug) {
+            return;
+        }
         if (Build.VERSION.SDK_INT < 9) {
             return;
         }
 
-        /*
         StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
                 .detectAll()
                 .permitDiskReads()
@@ -190,7 +193,6 @@ public class MainApp extends Application {
         StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
                 .detectAll()
                 .penaltyLog().build());
-        */
     }
 
     private class ServiceBroadcastReceiver extends BroadcastReceiver {
