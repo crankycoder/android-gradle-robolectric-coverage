@@ -2,4 +2,4 @@ all:
 	./gradlew build
 
 test:
-	./gradlew test
+	./gradlew testUnittest
