@@ -57,6 +57,14 @@ android {
 
         release {
         }
+
+        // The unittest buildtype is based on the debug type
+        // but we set an explicit flag
+        unittest.initWith(buildTypes.debug)
+        unittest {
+            buildConfigField "boolean", "UNITTEST", "true" 
+        }
+
     }
 
     sourceSets {
