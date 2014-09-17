@@ -67,6 +67,7 @@ public class MainApp extends Application {
         super.onCreate();
 
         AppGlobals.isDebug = BuildConfig.DEBUG;
+        AppGlobals.isUnittest = BuildConfig.UNITTEST;
         AppGlobals.appVersionName = BuildConfig.VERSION_NAME;
         AppGlobals.appVersionCode = BuildConfig.VERSION_CODE;
         AppGlobals.appName = this.getResources().getString(R.string.app_name);
@@ -180,7 +181,14 @@ public class MainApp extends Application {
         if (!AppGlobals.isDebug) {
             return;
         }
+
         if (Build.VERSION.SDK_INT < 9) {
+            return;
+        }
+
+        if (AppGlobals.isUnittest) {
+            // Unittesting happens inside of robolectric and we can't 
+            // have strictmode enabled
             return;
         }
 

@@ -49,6 +49,7 @@ android {
 
         buildConfigField "String", "MOZILLA_API_KEY", getMozillaApiKey()
         buildConfigField "String", "TILE_SERVER_URL", getTileServerUrl()
+        buildConfigField "boolean", "UNITTEST", "false"
     }
 
     buildTypes {
