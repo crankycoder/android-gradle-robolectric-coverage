@@ -14,6 +14,8 @@ import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 
+import org.mozilla.mozstumbler.client.MainActivity;
+
 @Config(emulateSdk = 18)
 @RunWith(RobolectricTestRunner.class)
 public class MainActivityTest {
@@ -28,18 +30,5 @@ public class MainActivityTest {
 	@Test
 	public void activityShouldNotBeNull() {
 		assertNotNull(activity);
-	}
-
-	@Test
-	public void clickOnMenuShouldShowToast() {
-		MenuItem item = new TestMenuItem() {
-			public int getItemId() {
-				return R.id.action_settings;
-			}
-		};
-
-		activity.onOptionsItemSelected(item);
-
-		assertThat(ShadowToast.getTextOfLatestToast(), equalTo("Menu item clicked"));
 	}
 }
