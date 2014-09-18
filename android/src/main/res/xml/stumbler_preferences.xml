@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:key="preferences">
+    <EditTextPreference
+        android:key="nickname"
+        android:title="@string/enter_nickname"
+        android:summary="@string/enter_nickname_longtext" />
+    <CheckBoxPreference
+        android:key="wifi_only"
+        android:title="@string/upload_wifi_only_title"
+        android:summary="@string/upload_wifi_only_summary"
+        android:defaultValue="true" />
+    <CheckBoxPreference
+        android:key="hardware_acceleration"
+        android:title="@string/hardware_acceleration_title"
+        android:defaultValue="true" />
+    <CheckBoxPreference
+        android:key="keep_screen_on"
+        android:title="@string/keep_screen_on_title"
+        android:defaultValue="true" />
+</PreferenceScreen>
