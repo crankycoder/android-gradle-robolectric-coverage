@@ -76,6 +76,14 @@ android {
         disable 'MissingTranslation'
         abortOnError false
     }
+
+
+    // We only want to run tests against the unittest build type
+    // the debug build will be used for device level testing
+    // http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Basics-and-Configuration
+    // Unfortunately, this configuration option doesn't seem to do the
+    // right thing.  *yay*
+    testBuildType "unittest"
 }
 
 // Declare dependency between building the android app and grabbing the
